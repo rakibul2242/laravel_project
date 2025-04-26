@@ -29,9 +29,8 @@ Route::post('signUpFrom', [userController::class, 'newuser']);
 
 Route::view('student_form', 'student_form');
 Route::post('student_form', [StudentController::class, 'store']);
-Route::get('studentList', [StudentController::class, 'show']);
+Route::get('student_list', [StudentController::class, 'studentWithResult']);
 Route::get('student_view/{id}', [StudentController::class, 'show']);
 Route::get('student_edit/{id}', [StudentController::class, 'edit']);
 Route::post('student_update/{id}', [StudentController::class, 'update']);
 Route::delete('student_delete/{id}', [StudentController::class, 'delete'])->name('student.delete');
-

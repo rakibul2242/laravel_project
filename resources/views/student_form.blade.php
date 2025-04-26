@@ -67,7 +67,7 @@
                         <i class="bi bi-check-circle me-1"></i> Submit
                     </button>
 
-                    <a href="{{ url('studentList') }}" class="btn btn-outline-primary w-100">
+                    <a href="{{ url('student_list') }}" class="btn btn-outline-primary w-100">
                         <i class="bi bi-list-ul me-1"></i> See All Students
                     </a>
                 </form>

@@ -60,7 +60,7 @@
                         <button type="submit" class="btn btn-outline-success">
                             <i class="bi bi-check-circle"></i> Update Student
                         </button>
-                        <a href="{{ url('studentList') }}" class="btn btn-outline-danger">
+                        <a href="{{ url('student_list') }}" class="btn btn-outline-danger">
                             <i class="bi bi-arrow-return-left"></i> Cancel
                         </a>
                     </div>

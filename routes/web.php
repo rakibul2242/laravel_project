@@ -34,3 +34,7 @@ Route::get('student_view/{id}', [StudentController::class, 'show']);
 Route::get('student_edit/{id}', [StudentController::class, 'edit']);
 Route::post('student_update/{id}', [StudentController::class, 'update']);
 Route::delete('student_delete/{id}', [StudentController::class, 'delete'])->name('student.delete');
+
+Route::view('upload_image', 'upload_image');
+Route::get('upload_image', [StudentController::class, 'studentWithImage']);
+Route::post('upload_image', [StudentController::class, 'upload'])->name('upload_image');

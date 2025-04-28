@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\siteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\EmailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,3 +39,8 @@ Route::delete('student_delete/{id}', [StudentController::class, 'delete'])->name
 Route::view('upload_image', 'upload_image');
 Route::get('upload_image', [StudentController::class, 'studentWithImage']);
 Route::post('upload_image', [StudentController::class, 'upload'])->name('upload_image');
+
+Route::get('send_email', [EmailController::class, 'sendEmail']);
+
+
+Route::view('layout_view', 'layout_view');

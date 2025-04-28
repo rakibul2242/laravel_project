@@ -93,16 +93,16 @@ class StudentController extends Controller
         try {
             if ($request->hasFile('image')) {
                 $path = $request->file('image')->store('images', 'public');
-                $filename = basename($path);
+                $image_path = basename($path);
 
                 $image = new Image();
-                $image->filename = $filename;
+                $image->image_path = $image_path;
                 $image->student_id = $request->student_id;
                 $image->save();
 
                 return redirect()->route('upload_image')
                     ->with('success', 'Image uploaded successfully')
-                    ->with('filename', $filename)
+                    ->with('image_path', $image_path)
                     ->with('student_id', $request->student_id);
             }
         } catch (\Exception $e) {

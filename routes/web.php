@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::view('home', 'home');
+// Route::view('home', 'home');
 Route::view('signup', 'sign_up');
 Route::post('signUpFrom', [userController::class, 'newuser']);
 

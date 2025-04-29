@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\siteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\userController;
-use App\Http\Controllers\EmailController;
+use App\Http\Controllers\MailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,7 +40,10 @@ Route::view('upload_image', 'upload_image');
 Route::get('upload_image', [StudentController::class, 'studentWithImage']);
 Route::post('upload_image', [StudentController::class, 'upload'])->name('upload_image');
 
-Route::get('send_email', [EmailController::class, 'sendEmail']);
+Route::post('send_mail', [MailController::class, 'sendMail'])->name('send_mail');
+Route::view('send_mail', 'send_mail');
+Route::view('mail', 'mail');
 
 
 Route::view('layout_view', 'layout_view');
+

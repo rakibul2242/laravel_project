@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    function store(Request $request)
+    function studentStore(Request $request)
     {
         // Validate incoming request data
         $request->validate([
@@ -46,13 +46,13 @@ class StudentController extends Controller
         return view('student_view', compact('student'));
     }
 
-    function edit($id)
+    function student_edit($id)
     {
         $student = Student::findOrFail($id);
         return view('student_edit', compact('student'));
     }
 
-    function update(Request $request, $id)
+    function student_update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -121,5 +121,74 @@ class StudentController extends Controller
     {
         $students = Student::with('images')->get();
         return view('upload_image', compact('students'));
+    }
+    public function index()
+    {
+        $students = Student::paginate(10);
+        return view('dashboard', ['students' => $students]);
+    }
+    public function create()
+    {
+        return view('students.create');
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'roll' => 'required|integer',
+            'section' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        // Attempt to create a new student
+        $student = Student::create([
+            'name' => $request->name,
+            'roll' => $request->roll,
+            'section' => $request->section,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+        ]);
+
+        // Check if creation was successful
+        if ($student) {
+            return redirect()->route('students.create')->with('success', 'Student added successfully.');
+        } else {
+            return redirect()->route('students.create')->with('error', 'Failed to add student. Please try again.');
+        }
+    }
+
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('students.edit', compact('student'));
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'roll' => 'required|integer',
+            'section' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        $student = Student::findOrFail($id);
+        $student->update([
+            'name' => $request->name,
+            'roll' => $request->roll,
+            'section' => $request->section,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+        ]);
+
+        return redirect()->route('students.edit', ['student' => $id])->with('success', 'Student updated successfully');
+    }
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Student deleted successfully');
     }
 }

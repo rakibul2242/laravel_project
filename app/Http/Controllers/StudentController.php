@@ -50,9 +50,9 @@ class StudentController extends Controller
     }
 
 
-    
 
-    
+
+
     public function index()
     {
         $students = Student::paginate(10);
@@ -60,8 +60,8 @@ class StudentController extends Controller
     }
     public function create()
     {
-        return view('students.create');
-    }
+        return view('students.create'); // ✅ should now work
+    }    
     public function store(Request $request)
     {
         $request->validate([

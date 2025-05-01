@@ -67,7 +67,7 @@
                         Add Student
                     </button>
 
-                    <a href="{{ route('dashboard') }}" class="inline-block px-4 py-2 text-purple-600 font-semibold rounded-lg border border-purple-600 hover:bg-purple-600 hover:text-white transition duration-200">
+                    <a href="{{ route('students') }}" class="inline-block px-4 py-2 text-purple-600 font-semibold rounded-lg border border-purple-600 hover:bg-purple-600 hover:text-white transition duration-200">
                         Go to Student List
                     </a>
                 </div>

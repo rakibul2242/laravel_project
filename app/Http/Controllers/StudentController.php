@@ -9,80 +9,6 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    function studentStore(Request $request)
-    {
-        // Validate incoming request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'roll' => 'required|integer',
-            'section' => 'required|string|max:1',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-        ]);
-
-        // Create and save the student
-        $student = new Student();
-        $student->name = $request->name;
-        $student->roll = $request->roll;
-        $student->section = $request->section;
-        $student->phone_number = $request->phone;
-        $student->address = $request->address;
-        $student->save();
-
-        // Redirect with success message
-        return redirect('student_form')->with('success', 'New student added successfully!');
-    }
-
-    public function studentWithResult()
-    {
-        // eager‑load results and paginate
-        $students = Student::with('results')->paginate(10);   // 10 rows per page
-        return view('student_list', compact('students'));
-    }
-
-    function show($id)
-    {
-        $student = Student::findOrFail($id);
-        return view('student_view', compact('student'));
-    }
-
-    function student_edit($id)
-    {
-        $student = Student::findOrFail($id);
-        return view('student_edit', compact('student'));
-    }
-
-    function student_update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'roll' => 'required|integer',
-            'section' => 'required|string|max:1',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-        ]);
-
-        $student = Student::findOrFail($id);
-        $student->name = $request->name;
-        $student->roll = $request->roll;
-        $student->section = $request->section;
-        $student->phone_number = $request->phone;
-        $student->address = $request->address;
-        $student->save();
-
-        return redirect('student_list')->with('success', 'Student updated successfully!');
-    }
-
-    function delete($id)
-    {
-        $student = Student::findOrFail($id);
-
-        if ($student->delete()) {
-            return redirect('student_list')->with('warning', 'Student deleted successfully!');
-        } else {
-            return redirect('student_list')->with('error', 'Student not deleted!');
-        }
-    }
     public function upload(Request $request)
     {
         $request->validate([
@@ -122,10 +48,15 @@ class StudentController extends Controller
         $students = Student::with('images')->get();
         return view('upload_image', compact('students'));
     }
+
+
+    
+
+    
     public function index()
     {
         $students = Student::paginate(10);
-        return view('dashboard', ['students' => $students]);
+        return view('students.index', ['students' => $students]);
     }
     public function create()
     {
@@ -182,13 +113,25 @@ class StudentController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect()->route('students.edit', ['student' => $id])->with('success', 'Student updated successfully');
+        return redirect()->route('students.index')->with('success', 'Student updated successfully');
     }
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Student deleted successfully');
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully');
     }
 }
+
+// use App\Models\Student;
+
+// public function index()
+// {
+//     return view('dashboard', [
+//         'teacherCount' => \App\Models\Teacher::count(),
+//         'studentCount' => \App\Models\Student::count(),
+//         'courseCount' => \App\Models\Course::count(),
+//         'recentStudents' => Student::latest()->take(5)->get(),
+//     ]);
+// }

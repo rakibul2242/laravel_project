@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="mt-8 flex justify-between">
-                    <a href="{{ route('students.index') }}" class="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition">
+                    <a href="{{ route('students.index') }}" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-600 hover:text-white transition">
                         ← Back
                     </a>
                     <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">

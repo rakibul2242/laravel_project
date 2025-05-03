@@ -8,11 +8,14 @@
             </div>
             @endif
 
-            @if (session('error'))
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                {{ session('error') }}
-            </div>
+            @if (session('success_distroy'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">{{ session('success') }}</div>
             @endif
+
+            @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"> {{ session('error') }}</div>
+            @endif
+            
             @if ($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 <strong>Whoops! Something went wrong.</strong>
@@ -59,10 +62,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="mt-4">
+                <div class="px-6 py-2 w-3/5 m-auto">
                     {{ $students->links() }}
                 </div>
-
             </div>
             <div class="mt-6 flex justify-end items-center">
                 <a href="{{ route('students.create') }}" class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">

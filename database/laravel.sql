@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2025 at 03:10 PM
+-- Generation Time: May 03, 2025 at 04:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,6 +43,26 @@ CREATE TABLE `cache_locks` (
   `key` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `credit_hours` int(11) NOT NULL,
+  `semester` varchar(255) DEFAULT NULL,
+  `level` enum('Undergraduate','Postgraduate') NOT NULL DEFAULT 'Undergraduate',
+  `department` varchar(255) DEFAULT NULL,
+  `teacher_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -132,7 +152,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
 (4, '2025_04_26_112824_add_two_factor_columns_to_users_table', 1),
-(5, '2025_04_26_112921_create_personal_access_tokens_table', 1);
+(5, '2025_04_26_112921_create_personal_access_tokens_table', 1),
+(9, '0001_01_01_000000_create_users_table', 1),
+(10, '0001_01_01_000001_create_cache_table', 1),
+(11, '0001_01_01_000002_create_jobs_table', 1),
+(12, '2025_04_26_112824_add_two_factor_columns_to_users_table', 1),
+(13, '2025_04_26_112921_create_personal_access_tokens_table', 1),
+(14, '2025_04_30_135923_create_teams_table', 1),
+(15, '2025_04_30_135924_create_team_user_table', 1),
+(16, '2025_04_30_135925_create_team_invitations_table', 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +242,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('y19VSJrP1vUDhSLvY3wx3Oi3gf9g9tMOxfwyknNq', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicG80ZWZ6b1RZVU81aEVWZDhMRXVuWWFzTVJnNWNuTmx5SW1TNkdFciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC91cGxvYWRfaW1hZ2UiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEyJEU1UnNZY1JkZXJIbVpobms4OHpNNmV4ZmN1UjI1cDR1SXkxQWh5Z0k1Sjl5NWtOZVo3Vnp1Ijt9', 1745672862);
+('bMn4kh37OmuUY6qpxM996yM4Ats5d7X8EKktbMqq', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRWE5RDB1QTdSZHdQT05IT21QRlM0eGVTQUtLbk5jQXhsTHhiYVRURyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb3Vyc2VzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1746279168);
 
 -- --------------------------------------------------------
 
@@ -225,7 +253,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 CREATE TABLE `students` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
-  `roll` varchar(20) NOT NULL,
+  `roll` int(20) NOT NULL,
   `section` varchar(10) NOT NULL,
   `phone_number` varchar(15) NOT NULL,
   `address` text NOT NULL,
@@ -238,11 +266,105 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `roll`, `section`, `phone_number`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'David Brown', '1044', 'C', '2233445566', '1342 Birch St, City, Country', '2025-04-26 12:31:49', '2025-04-26 06:41:45'),
-(2, 'Emily White', '105', 'A', '5566778899', '2389 Maple St, City, Country', '2025-04-26 12:31:49', '2025-04-26 12:31:49'),
-(3, 'Michael Davis', '106', 'B', '6677889900', '1023 Cedar St, City, Country', '2025-04-26 12:31:49', '2025-04-26 12:31:49'),
-(4, 'Sophia Wilson', '107', 'C', '7788990011', '7654 Birch St, City, Country', '2025-04-26 12:31:49', '2025-04-26 12:31:49'),
-(7, 'MD Rakibul Islam', '56', 'A', '5656', 'Dhaka', '2025-04-26 06:42:19', '2025-04-26 06:42:19');
+(1, 'David Brown', 1044, 'C', '01712345601', '1342 Birch St, City, Country', '2025-04-26 12:31:49', '2025-05-03 12:33:46'),
+(2, 'Emily White', 105, 'A', '01823456702', '2389 Maple St, City, Country', '2025-04-26 12:31:49', '2025-05-03 12:33:46'),
+(3, 'Michael Davis', 106, 'B', '01934567803', '1023 Cedar St, City, Country', '2025-04-26 12:31:49', '2025-05-03 12:33:46'),
+(4, 'Sophia Wilson', 107, 'C', '01645678904', '7654 Birch St, City, Country', '2025-04-26 12:31:49', '2025-05-03 12:33:46'),
+(7, 'MD Rakibul Islam', 56, 'A', '01756789007', 'Dhaka', '2025-04-26 06:42:19', '2025-05-03 12:33:46'),
+(8, 'John Doe', 11, 'A', '01867890108', '1234 Elm Street, Springfield', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(9, 'Jane Smith', 1, 'B', '01978901209', '5678 Oak Avenue, Rivertown', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(10, 'Michael Johnson', 12, 'A', '01689012310', '9101 Pine Road, Lakeside', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(11, 'Emily Davis', 15, 'C', '01790123411', '1122 Maple Drive, Hilltop', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(12, 'David Brown', 55, 'D', '01801234512', '3344 Birch Blvd, Greenfield', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(13, 'Sophia Wilson', 6, 'B', '01912345613', '4455 Cedar Lane, Meadowbrook', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(14, 'James Taylor', 7, 'C', '01623456714', '5566 Spruce Street, Seaview', '2025-05-03 12:22:36', '2025-05-03 12:33:46'),
+(35, 'Noah Walker', 17, 'A', '01734567835', '7890 Sycamore Street, Brookfield', '2025-05-03 12:28:26', '2025-05-03 12:33:46'),
+(36, 'Mia Young', 2, 'B', '01845678936', '3456 Willow Ave, Riverdale', '2025-05-03 12:28:26', '2025-05-03 12:33:46'),
+(37, 'Ethan Hall', 13, 'C', '01956789037', '8765 Ash Road, Sunnytown', '2025-05-03 12:28:26', '2025-05-03 12:33:46'),
+(38, 'Ava Allen', 14, 'D', '01667890138', '9087 Magnolia Blvd, Hillcrest', '2025-05-03 12:28:26', '2025-05-03 12:33:46'),
+(39, 'Lucas Wright', 25, 'A', '01778901239', '2134 Fir Street, Laketown', '2025-05-03 12:28:26', '2025-05-03 12:33:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teachers`
+--
+
+CREATE TABLE `teachers` (
+  `id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` int(15) NOT NULL,
+  `department` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `name`, `email`, `phone`, `department`, `created_at`, `updated_at`) VALUES
+(2, 'Amina Rahman', 'amina.rahman@example.com', 1710000001, 'Mathematics', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
+(3, 'Farhan Karim', 'farhan.karim@example.com', 1710000002, 'Physics', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
+(4, 'Nasreen Jahan', 'nasreen.jahan@example.com', 1710000003, 'Chemistry', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
+(5, 'Sajjad Hossain', 'sajjad.hossain@example.com', 1710000004, 'Biology', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
+(6, 'Lamia Chowdhury', 'lamia.chowdhury@example.com', 1710000005, 'English', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
+(22, 'Zakia Sultana', 'zakia.sultana@example.com', 1710000016, 'Physics', '2025-05-03 11:40:20', '2025-05-03 06:13:23'),
+(23, 'Nayeem Islam', 'nayeem.islam@example.com', 1710000017, 'Environmental Science', '2025-05-03 11:40:20', '2025-05-03 11:40:20'),
+(24, 'Rumana Khan', 'rumana.khan@example.com', 1710000018, 'Computer Science', '2025-05-03 11:40:20', '2025-05-03 06:14:52'),
+(25, 'Anwar Hossain', 'anwar.hossain@example.com', 1710000019, 'Literature', '2025-05-03 11:40:20', '2025-05-03 06:17:50'),
+(26, 'Shafiqur Rahman', 'shafiqur.rahman@example.com', 1710000020, 'Literature', '2025-05-03 11:40:20', '2025-05-03 06:17:56'),
+(27, 'Tahmina Alam', 'tahmina.alam@example.com', 1710000021, 'Music', '2025-05-03 11:40:20', '2025-05-03 06:18:12'),
+(28, 'Kamrul Ahsan', 'kamrul.ahsan@example.com', 1710000022, 'Political Science', '2025-05-03 11:40:20', '2025-05-03 06:18:22'),
+(29, 'Asma Begum', 'asma.begum@example.com', 1710000023, 'Psychology', '2025-05-03 11:40:20', '2025-05-03 06:18:37'),
+(30, 'Md. Saiful Islam', 'saiful.islam@example.com', 1710000024, 'Sociology', '2025-05-03 11:40:20', '2025-05-03 06:18:47'),
+(31, 'Raihan Uddin', 'raihan.uddin@example.com', 1710000025, 'Computer Science', '2025-05-03 11:40:20', '2025-05-03 06:20:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE `teams` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `personal_team` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team_invitations`
+--
+
+CREATE TABLE `team_invitations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `team_id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team_user`
+--
+
+CREATE TABLE `team_user` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `team_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -271,7 +393,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'MD Rakibul Islam', 'mdrakibulislam2242@gmail.com', NULL, '$2y$12$E5RsYcRderHmZhnk88zM6exfcuR25p4uIy1AhygI5J9y5kNeZ7Vzu', NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-26 05:33:16', '2025-04-26 05:33:16');
+(1, 'MD Rakibul Islam', 'mdrakibulislam2242@gmail.com', NULL, '$2y$12$E5RsYcRderHmZhnk88zM6exfcuR25p4uIy1AhygI5J9y5kNeZ7Vzu', NULL, NULL, NULL, 'yOAd6EFkjDLEZtne0C5IyLtKE11zRfLB5twXSpQ9NvhTLmt8d8ZfPtIejBRW', NULL, NULL, '2025-04-26 05:33:16', '2025-04-26 05:33:16');
 
 --
 -- Indexes for dumped tables
@@ -288,6 +410,12 @@ ALTER TABLE `cache`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -355,7 +483,37 @@ ALTER TABLE `sessions`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roll` (`roll`),
+  ADD UNIQUE KEY `phone_number` (`phone_number`);
+
+--
+-- Indexes for table `teachers`
+--
+ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teams_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `team_invitations`
+--
+ALTER TABLE `team_invitations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `team_invitations_team_id_email_unique` (`team_id`,`email`);
+
+--
+-- Indexes for table `team_user`
+--
+ALTER TABLE `team_user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `team_user_team_id_user_id_unique` (`team_id`,`user_id`);
 
 --
 -- Indexes for table `users`
@@ -367,6 +525,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -390,7 +554,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -408,7 +572,31 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `teachers`
+--
+ALTER TABLE `teachers`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `team_invitations`
+--
+ALTER TABLE `team_invitations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `team_user`
+--
+ALTER TABLE `team_user`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -431,6 +619,12 @@ ALTER TABLE `images`
 --
 ALTER TABLE `results`
   ADD CONSTRAINT `results_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `team_invitations`
+--
+ALTER TABLE `team_invitations`
+  ADD CONSTRAINT `team_invitations_team_id_foreign` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

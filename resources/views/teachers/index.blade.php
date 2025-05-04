@@ -51,7 +51,7 @@
                 <table class="min-w-full text-sm text-left text-gray-700">
                     <thead class="bg-purple-600 text-white">
                         <tr>
-                            <th class="px-6 py-3 font-semibold">ID</th>
+                            <th class="px-6 py-3 font-semibold">No.</th>
                             <th class="px-6 py-3 font-semibold">Name</th>
                             <th class="px-6 py-3 font-semibold">Email</th>
                             <th class="px-6 py-3 font-semibold">Phone</th>
@@ -60,9 +60,9 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-purple-200">
-                        @foreach($teachers as $teacher)
+                        @foreach($teachers as $index => $teacher)
                         <tr class="hover:bg-purple-50">
-                            <td class="px-6 py-4">{{ $teacher->id }}</td>
+                            <td class="px-6 py-4">{{ $teachers->firstItem() + $index }}</td>
                             <td class="px-6 py-4">{{ $teacher->name }}</td>
                             <td class="px-6 py-4">{{ $teacher->email }}</td>
                             <td class="px-6 py-4">0{{ $teacher->phone }}</td>

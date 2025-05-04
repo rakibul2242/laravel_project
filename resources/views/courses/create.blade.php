@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="mt-8 flex justify-between items-center">
-                    <a href="{{ route('courses.index') }}">🔙 <span class="text-purple-600 font-semibold hover:underline">Back to Course</span></a>
+                    <a href="{{ route('courses.index') }}">🔙 <span class="text-purple-600 font-semibold underline hover:text-blue-600">Back to Courses</span></a>
                     <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">➕ Add Course</button>
                 </div>
             </form>

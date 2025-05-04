@@ -33,7 +33,7 @@
                 <table class="min-w-full text-sm text-left text-gray-700">
                     <thead class="bg-purple-600 text-white">
                         <tr>
-                            <th class="px-6 py-3 font-semibold">ID</th>
+                            <th class="px-6 py-3 font-semibold">No.</th>
                             <th class="px-6 py-3 font-semibold">Student</th>
                             <th class="px-6 py-3 font-semibold">Roll No</th>
                             <th class="px-6 py-3 font-semibold">Course Name</th>
@@ -44,9 +44,9 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-purple-200">
-                        @foreach($results as $result)
+                        @foreach($results as $index => $result)
                         <tr class="hover:bg-purple-50">
-                            <td class="px-6 py-4">{{ $result->id }}</td>
+                            <td class="px-6 py-4">{{ $results->firstItem() + $index }}</td>
                             <td class="px-6 py-4">{{ $result->student->name ?? 'N/A' }}</td>
                             <td class="px-6 py-4">{{ $result->student->roll ?? 'N/A' }}</td>
                             <td class="px-6 py-4">{{ $result->course->title ?? 'N/A' }}</td>

@@ -42,7 +42,7 @@
                 <table class="min-w-full text-sm text-left text-gray-700">
                     <thead class="bg-purple-600 text-white">
                         <tr">
-                            <th class="px-6 py-3 font-semibold">ID</th>
+                            <th class="px-6 py-3 font-semibold">No.</th>
                             <th class="px-6 py-3 font-semibold">Course Name</th>
                             <th class="px-6 py-3 font-semibold">Code</th>
                             <th class="px-6 py-3 font-semibold">Credit</th>
@@ -54,9 +54,9 @@
                             </tr>
                     </thead>
                     <tbody class="divide-y divide-purple-200">
-                        @forelse ($courses as $course)
+                        @forelse ($courses as $index => $course)
                         <tr class="hover:bg-purple-50">
-                            <td class="px-6 py-4">{{ $course->id }}</td>
+                            <td class="px-6 py-4">{{ $courses->firstItem() + $index }}</td>
                             <td class="px-6 py-4">{{ $course->title }}</td>
                             <td class="px-6 py-4">{{ $course->code }}</td>
                             <td class="px-6 py-4">{{ $course->credit_hours }}</td>

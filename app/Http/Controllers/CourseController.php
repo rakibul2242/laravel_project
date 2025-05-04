@@ -38,7 +38,7 @@ class CourseController extends Controller
 
         Course::create($request->all());
 
-        return redirect()->route('courses.index')->with('success', 'Course added successfully!');
+        return redirect()->route('courses.create')->with('success', 'Course added successfully!');
     }
 
     // Show form to edit course

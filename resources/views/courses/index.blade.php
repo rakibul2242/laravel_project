@@ -4,12 +4,7 @@
             @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
                 {{ session('success') }}
-                <a href="{{ route('students.index') }}" class="text-blue-600 underline hover:text-blue-800 ml-2">View All Students</a>
             </div>
-            @endif
-
-            @if (session('success_distroy'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">{{ session('success') }}</div>
             @endif
 
             @if (session('error'))
@@ -26,14 +21,19 @@
                 </ul>
             </div>
             @endif
-            @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ session('success') }}
+
+            @if ($courses->count() === 0)
+            <div class="my-8 text-center bg-yellow-100 border border-yellow-400 text-yellow-800 px-6 py-4 rounded-lg shadow-md">
+                <p class="text-2xl font-semibold mb-2">🚫 No Courses Available</p>
+                <p class="text-sm">It looks like there are no courses added yet. Click below to create your first course.</p>
+                <a href="{{ route('courses.create') }}"
+                    class="inline-block mt-4 px-5 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                    ➕ Create a New Course
+                </a>
             </div>
-            @endif
+            @else
 
             <h2 class="text-3xl font-bold text-center text-purple-800 mb-6">📚 All Courses</h2>
-
             <div class="overflow-x-auto bg-white rounded-lg shadow-md">
             <table class="min-w-full text-sm text-left text-gray-700">
             <thead class="bg-purple-600 text-white">
@@ -95,5 +95,6 @@
                     ➕ Add New Course
                 </a>
             </div>
+            @endif
         </div>
 </x-app-layout>

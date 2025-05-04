@@ -3,13 +3,6 @@
         <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-8">
             <h2 class="text-2xl font-bold text-purple-700 mb-8 text-center">✏️ Edit Course</h2>
 
-            @if (session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                    {{ session('success') }}
-                    <a href="{{ route('courses.index') }}" class="text-blue-600 underline hover:text-blue-800 ml-2">View All Courses</a>
-                </div>
-            @endif
-
             @if ($errors->any())
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                     <strong>Whoops! Something went wrong.</strong>
@@ -34,7 +27,7 @@
 
                     <div>
                         <label for="code" class="block text-sm font-medium text-gray-700">Course Code</label>
-                        <input type="text" name="code" id="code" value="{{ old('code', $course->code) }}"
+                        <input type="number" name="code" id="code" value="{{ old('code', $course->code) }}"
                             class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" required>
                     </div>
 

@@ -60,7 +60,7 @@
                         ← Back
                     </a>
                     <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">
-                        Update Teacher
+                    💾 Update Teacher
                     </button>
                 </div>
             </form>

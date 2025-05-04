@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2025 at 04:07 PM
+-- Generation Time: May 04, 2025 at 05:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,6 +64,23 @@ CREATE TABLE `courses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `title`, `code`, `description`, `credit_hours`, `semester`, `level`, `department`, `teacher_id`, `created_at`, `updated_at`) VALUES
+(2, 'History Of English Literature', '101123', 'English Course', 4, '4', 'Postgraduate', 'English', 26, '2025-05-03 09:13:49', '2025-05-04 08:09:24'),
+(4, 'Introduction to Computer Science', '101', 'This course provides an introduction to computer science, covering basic programming concepts and algorithms.', 3, '1', 'Undergraduate', 'Computer Science', 2, '2025-05-03 15:32:46', '2025-05-04 05:03:06'),
+(5, 'Advanced Programming Techniques', '201', 'This course covers advanced programming topics like data structures, algorithms, and object-oriented programming.', 4, '1', 'Undergraduate', 'Computer Science', 2, '2025-05-03 15:32:46', '2025-05-04 05:03:18'),
+(6, 'Linear Algebra', '105', 'This course introduces linear algebra, covering topics such as matrices, vectors, and linear transformations.', 3, '1', 'Undergraduate', 'Philosophy', 3, '2025-05-03 15:32:46', '2025-05-04 05:04:33'),
+(7, 'Calculus I', '102', 'This course covers the basics of differential calculus, including limits, derivatives, and their applications.', 4, '1', 'Undergraduate', 'Mathematics', 4, '2025-05-03 15:32:46', '2025-05-04 05:05:16'),
+(8, 'Organic Chemistry', '1010', 'An introductory course on organic chemistry, focusing on the study of hydrocarbons and their derivatives.', 3, '1', 'Undergraduate', 'Chemistry', 5, '2025-05-03 15:32:46', '2025-05-04 05:05:25'),
+(9, 'Physical Chemistry', '2010', 'A course focusing on the principles of physical chemistry, including thermodynamics and kinetics.', 4, '1', 'Undergraduate', 'Chemistry', 6, '2025-05-03 15:32:46', '2025-05-04 05:05:32'),
+(10, 'Quantum Mechanics', '1121', 'An introduction to the principles of quantum mechanics, including wave-particle duality and the Schrödinger equation.', 3, '1', 'Undergraduate', 'Physics', 2, '2025-05-03 15:32:46', '2025-05-04 05:05:39'),
+(11, 'Thermodynamics', '1021', 'This course introduces the basic concepts of thermodynamics, including the laws of thermodynamics and entropy.', 4, '1', 'Undergraduate', 'Physics', 2, '2025-05-03 15:32:46', '2025-05-04 05:05:47'),
+(12, 'Shakespearean Literature', '1001', 'A study of the works of Shakespeare, focusing on his plays and their historical context.', 3, '1', 'Undergraduate', 'English', 2, '2025-05-03 15:32:46', '2025-05-04 05:13:12'),
+(13, 'Modern English Literature', 'ENG102', 'A course exploring modern English literature from the 19th to the 21st century.', 4, 'Spring', 'Undergraduate', 'English', 10, '2025-05-03 15:32:46', '2025-05-03 15:32:46');
 
 -- --------------------------------------------------------
 
@@ -202,9 +219,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `results` (
   `id` int(10) UNSIGNED NOT NULL,
   `student_id` int(10) UNSIGNED NOT NULL,
-  `course_name` text NOT NULL,
-  `course_code` varchar(20) NOT NULL,
-  `teacher` varchar(50) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `result` varchar(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -214,13 +229,26 @@ CREATE TABLE `results` (
 -- Dumping data for table `results`
 --
 
-INSERT INTO `results` (`id`, `student_id`, `course_name`, `course_code`, `teacher`, `result`, `created_at`, `updated_at`) VALUES
-(15, 1, 'Mathematics', 'MATH101', 'Mr. Roberts', 'A', '2025-04-26 12:32:43', '2025-04-26 12:32:43'),
-(16, 1, 'Science', 'SCI101', 'Dr. Adams', 'B+', '2025-04-26 12:32:43', '2025-04-26 12:32:43'),
-(17, 2, 'History', 'HIST102', 'Ms. Lee', 'A-', '2025-04-26 12:32:43', '2025-04-26 12:32:43'),
-(18, 2, 'English', 'ENG102', 'Mr. Smith', 'B', '2025-04-26 12:32:43', '2025-04-26 12:32:43'),
-(19, 3, 'Geography', 'GEO101', 'Dr. Brown', 'B+', '2025-04-26 12:32:43', '2025-04-26 12:32:43'),
-(20, 3, 'Computer Science', 'CS101', 'Prof. Green', 'A', '2025-04-26 12:32:43', '2025-04-26 12:32:43');
+INSERT INTO `results` (`id`, `student_id`, `course_id`, `result`, `created_at`, `updated_at`) VALUES
+(21, 13, 5, 'B-', '2025-05-04 07:15:18', '2025-05-04 07:15:18'),
+(22, 4, 9, 'C', '2025-05-04 07:23:57', '2025-05-04 07:23:57'),
+(23, 10, 7, 'B', '2025-05-04 07:31:25', '2025-05-04 07:31:25'),
+(24, 2, 9, 'B', '2025-05-04 07:38:50', '2025-05-04 07:38:50'),
+(25, 10, 9, 'B+', '2025-05-04 07:38:59', '2025-05-04 07:38:59'),
+(26, 13, 6, 'A-', '2025-05-04 07:39:06', '2025-05-04 07:39:06'),
+(27, 9, 6, 'A-', '2025-05-04 07:39:12', '2025-05-04 07:39:12'),
+(28, 2, 7, 'C+', '2025-05-04 07:39:21', '2025-05-04 07:39:21'),
+(29, 1, 4, 'B-', '2025-05-04 07:39:27', '2025-05-04 07:39:27'),
+(30, 1, 9, 'B-', '2025-05-04 07:39:37', '2025-05-04 07:39:37'),
+(31, 1, 2, 'B-', '2025-05-04 07:39:45', '2025-05-04 07:39:45'),
+(32, 1, 2, 'A-', '2025-05-04 07:39:54', '2025-05-04 07:39:54'),
+(33, 4, 5, 'C+', '2025-05-04 07:40:32', '2025-05-04 07:40:32'),
+(34, 1, 2, 'C+', '2025-05-04 07:41:03', '2025-05-04 07:41:03'),
+(35, 1, 2, 'B-', '2025-05-04 07:41:19', '2025-05-04 07:41:19'),
+(36, 1, 10, 'B-', '2025-05-04 08:28:04', '2025-05-04 08:28:04'),
+(37, 1, 11, 'C+', '2025-05-04 08:28:44', '2025-05-04 08:28:44'),
+(38, 1, 7, 'A', '2025-05-04 08:28:56', '2025-05-04 08:28:56'),
+(39, 1, 6, 'A-', '2025-05-04 08:29:28', '2025-05-04 08:29:28');
 
 -- --------------------------------------------------------
 
@@ -242,7 +270,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bMn4kh37OmuUY6qpxM996yM4Ats5d7X8EKktbMqq', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRWE5RDB1QTdSZHdQT05IT21QRlM0eGVTQUtLbk5jQXhsTHhiYVRURyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb3Vyc2VzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1746279168);
+('i79FaJPoAXC45PS6QnqaAjG72nvYNQ8KxPWmoRM5', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMnlaeVFLN2hZN0xWd2N3eFVoTzNWUXRzeGhZRmlNbXlXZ2V4Nmc0NCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1746371178);
 
 -- --------------------------------------------------------
 
@@ -393,7 +421,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'MD Rakibul Islam', 'mdrakibulislam2242@gmail.com', NULL, '$2y$12$E5RsYcRderHmZhnk88zM6exfcuR25p4uIy1AhygI5J9y5kNeZ7Vzu', NULL, NULL, NULL, 'yOAd6EFkjDLEZtne0C5IyLtKE11zRfLB5twXSpQ9NvhTLmt8d8ZfPtIejBRW', NULL, NULL, '2025-04-26 05:33:16', '2025-04-26 05:33:16');
+(1, 'MD Rakibul Islam', 'mdrakibulislam2242@gmail.com', NULL, '$2y$12$E5RsYcRderHmZhnk88zM6exfcuR25p4uIy1AhygI5J9y5kNeZ7Vzu', NULL, NULL, NULL, 'XIYk2vimnqqf3pBhWodcH4NyzGteIeSqwSShjianYD94mvbMkwU3dSwyWuIK', NULL, NULL, '2025-04-26 05:33:16', '2025-04-26 05:33:16');
 
 --
 -- Indexes for dumped tables
@@ -530,7 +558,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -566,7 +594,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `students`

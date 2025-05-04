@@ -15,7 +15,7 @@
                 {{ session('error') }}
             </div>
             @endif
-            
+
             @if ($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 <strong>Whoops! Something went wrong.</strong>
@@ -64,13 +64,8 @@
                 </div>
 
                 <div class="mt-8 flex justify-between items-center">
-                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">
-                        Add Student
-                    </button>
-
-                    <a href="{{ route('students') }}" class="inline-block px-4 py-2 text-purple-600 font-semibold rounded-lg border border-purple-600 hover:bg-purple-600 hover:text-white transition duration-200">
-                        Go to Student List
-                    </a>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200"> ➕ Add Student</button>
+                    <a href="{{ route('students') }}" class="text-purple-600 hover:underline">🔙 Back to Student List </a>
                 </div>
 
             </form>

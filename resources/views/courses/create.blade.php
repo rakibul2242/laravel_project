@@ -4,21 +4,21 @@
             <h2 class="text-2xl font-bold text-purple-700 mb-8 text-center">📚 Add New Course</h2>
 
             @if (session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                    {{ session('success') }}
-                    <a href="{{ route('courses.index') }}" class="text-blue-600 underline hover:text-blue-800 ml-2">View All Courses</a>
-                </div>
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                {{ session('success') }}
+                <a href="{{ route('courses.index') }}" class="text-blue-600 underline hover:text-blue-800 ml-2">View All Courses</a>
+            </div>
             @endif
 
             @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    <strong>Whoops! Something went wrong.</strong>
-                    <ul class="mt-2 list-disc list-inside text-sm text-red-600">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <strong>Whoops! Something went wrong.</strong>
+                <ul class="mt-2 list-disc list-inside text-sm text-red-600">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
 
             <form action="{{ route('courses.store') }}" method="POST">
@@ -51,7 +51,7 @@
                             <option value="" disabled selected>Select Semester</option>
                             @for ($i = 1; $i <= 8; $i++)
                                 <option value="{{ $i }}">Semester {{ $i }}</option>
-                            @endfor
+                                @endfor
                         </select>
                     </div>
 
@@ -85,20 +85,15 @@
                         <select name="teacher_id" id="teacher_id" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" required>
                             <option value="" disabled selected>Select Teacher</option>
                             @foreach ($teachers as $teacher)
-                                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="mt-8 flex justify-between items-center">
-                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">
-                        Add Course
-                    </button>
-
-                    <a href="{{ route('courses.index') }}" class="inline-block px-4 py-2 text-purple-600 font-semibold rounded-lg border border-purple-600 hover:bg-purple-600 hover:text-white transition duration-200">
-                        Go to Course List
-                    </a>
+                    <a href="{{ route('courses.index') }}">🔙 <span class="text-purple-600 font-semibold hover:underline">Back to Course</span></a>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">➕ Add Course</button>
                 </div>
             </form>
         </div>

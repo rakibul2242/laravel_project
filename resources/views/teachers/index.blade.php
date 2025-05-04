@@ -41,7 +41,12 @@
             </div>
             @else
 
-            <h2 class="text-3xl font-bold text-center text-purple-800 mb-6">👨‍🏫 Teacher List</h2>
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-3xl font-bold text-center text-purple-800">👨‍🏫 Teacher List</h2>
+                <a href="{{ route('teachers.create') }}" class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">
+                    ➕ Add New Teacher
+                </a>
+            </div>
             <div class="overflow-x-auto bg-white rounded-lg shadow-md">
                 <table class="min-w-full text-sm text-left text-gray-700">
                     <thead class="bg-purple-600 text-white">
@@ -77,12 +82,6 @@
                 <div class="px-6 py-2 w-3/5 m-auto">
                     {{ $teachers->links() }}
                 </div>
-            </div>
-
-            <div class="mt-6 flex justify-end items-center">
-                <a href="{{ route('teachers.create') }}" class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">
-                    + Add Teacher
-                </a>
             </div>
             @endif
         </div>

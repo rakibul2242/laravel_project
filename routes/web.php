@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\MailController;
 
@@ -19,6 +20,7 @@ Route::get('/dashboard', function () {
 Route::resource('students', StudentController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('courses', CourseController::class);
+Route::resource('results', ResultController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

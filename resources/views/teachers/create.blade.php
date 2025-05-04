@@ -70,13 +70,8 @@
                 </div>
 
                 <div class="mt-8 flex justify-between items-center">
-                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">
-                        Add Teacher
-                    </button>
-
-                    <a href="{{ route('teachers.index') }}" class="inline-block px-4 py-2 text-purple-600 font-semibold rounded-lg border border-purple-600 hover:bg-purple-600 hover:text-white transition duration-200">
-                        Go to Teacher List
-                    </a>
+                    <a href="{{ route('teachers.index') }}">🔙 <span class="text-purple-600 font-semibold hover:underline"> Back to Teachers</span></a>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">➕ Add Teacher</button>
                 </div>
             </form>
         </div>

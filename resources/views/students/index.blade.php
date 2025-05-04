@@ -32,8 +32,10 @@
                 </a>
             </div>
             @else
-
-            <h2 class="text-3xl font-bold text-center text-purple-800 mb-6">🎓 Student List</h2>
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-3xl font-bold text-center text-purple-800">🎓 Student List</h2>
+                <a href="{{ route('students.create') }}" class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">➕ Add New Student</a>
+            </div>
 
             <div class="overflow-x-auto bg-white rounded-lg shadow-md">
                 <table class="min-w-full text-sm text-left text-gray-700">
@@ -58,19 +60,47 @@
                             <td class="px-6 py-4">{{ $student->section }}</td>
                             <td class="px-6 py-4">{{ $student->phone_number }}</td>
                             <td class="px-6 py-4">{{ $student->address }}</td>
-                            <td class="px-6 py-4 space-y-1">
-                                @forelse($student->results as $result)
-                                <div class="d-flex">
-                                    <strong>{{ $result->course_name }}</strong>
-                                    <span class="text-gray-500"><sub>By {{ $result->teacher }}</sub></span>
-                                    <span class="font-semibold text-purple-700">Result: {{ $result->result }}</span>
-                                </div>
-                                @empty
+
+                            <td class="px-6 py-4">
+                                @if($student->results->isEmpty())
                                 <span class="text-gray-400 italic">No results</span>
-                                @endforelse
+                                @else
+                                @php $resultsToShow = $student->results->take(2); @endphp
+
+                                @foreach($resultsToShow as $result)
+                                <span class="relative group inline-block mb-1">
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded font-semibold mr-1">
+                                        {{ $result->result }}
+                                    </span>
+                                    <div class="absolute z-10 hidden group-hover:block bg-white text-sm text-gray-700 border border-gray-300 shadow-lg p-3 rounded-lg w-64 top-full left-1/2 transform -translate-x-1/2 mt-1">
+                                        <div><strong>Course:</strong> {{ $result->course->title ?? 'N/A' }} ({{ $result->course->code ?? '' }})</div>
+                                        <div><strong>Teacher:</strong> {{ $result->course->teacher->name ?? 'N/A' }}</div>
+                                        <div class="text-purple-600 font-semibold"><strong>Result:</strong> {{ $result->result ?? 'N/A' }}</div>
+                                    </div>
+                                </span>
+                                @endforeach
+
+                                @if($student->results->count() > 2)
+                                @php $remaining = $student->results->count() - 2; @endphp
+                                <span class="relative group text-sm text-blue-600 underline cursor-pointer">
+                                    +{{ $remaining }} more
+                                    <div class="absolute z-10 hidden group-hover:block bg-white text-sm text-gray-700 border border-gray-300 shadow-lg p-3 rounded-lg w-64 top-full left-1/2 transform -translate-x-1/2 max-h-[200px] overflow-y-auto">
+                                        @foreach($student->results->slice(2) as $result)
+                                        <div class="mb-2 border-b pb-1">
+                                            <strong>{{ $result->course->title ?? 'N/A' }}</strong> ({{ $result->course->code ?? '' }})<br>
+                                            Teacher: {{ $result->course->teacher->name ?? 'N/A' }}<br>
+                                            <span class="text-purple-600 font-semibold">Result: {{ $result->result }}</span>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </span>
+
+                                @endif
+                                @endif
                             </td>
+
                             <td class="">
-                                <a href="{{ route('students.edit', $student->id) }}" class="text-blue-600 py-2 px-2 rounded hover:text-white hover:bg-blue-700 transition duration-200"> Edit </a>
+                                <a href="{{ route('students.edit', $student->id) }}" class="text-blue-600 py-2 px-2 rounded hover:text-white hover:bg-blue-700 transition duration-200">Edit</a>
                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this student?');" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
@@ -84,11 +114,6 @@
                 <div class="px-6 py-2 w-3/5 m-auto">
                     {{ $students->links() }}
                 </div>
-            </div>
-            <div class="mt-6 flex justify-end items-center">
-                <a href="{{ route('students.create') }}" class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">
-                    ➕ Add New Student
-                </a>
             </div>
             @endif
         </div>

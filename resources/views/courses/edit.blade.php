@@ -4,14 +4,14 @@
             <h2 class="text-2xl font-bold text-purple-700 mb-8 text-center">✏️ Edit Course</h2>
 
             @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    <strong>Whoops! Something went wrong.</strong>
-                    <ul class="mt-2 list-disc list-inside text-sm text-red-600">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <strong>Whoops! Something went wrong.</strong>
+                <ul class="mt-2 list-disc list-inside text-sm text-red-600">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
 
             <form action="{{ route('courses.update', $course->id) }}" method="POST">
@@ -48,7 +48,7 @@
                             <option value="" disabled>Select Semester</option>
                             @for ($i = 1; $i <= 8; $i++)
                                 <option value="{{ $i }}" {{ $course->semester == $i ? 'selected' : '' }}>Semester {{ $i }}</option>
-                            @endfor
+                                @endfor
                         </select>
                     </div>
 
@@ -81,20 +81,17 @@
                         <select name="teacher_id" id="teacher_id" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" required>
                             <option value="" disabled>Select Teacher</option>
                             @foreach ($teachers as $teacher)
-                                <option value="{{ $teacher->id }}" {{ $course->teacher_id == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                            <option value="{{ $teacher->id }}" {{ $course->teacher_id == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="mt-8 flex justify-between items-center">
+                    <a href="{{ route('courses.index') }}" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-600 hover:text-white transition">← Back</a>
                     <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">
-                        Update Course
+                    💾 Update Course
                     </button>
-
-                    <a href="{{ route('courses.index') }}" class="inline-block px-4 py-2 text-purple-600 font-semibold rounded-lg border border-purple-600 hover:bg-purple-600 hover:text-white transition duration-200">
-                        Go to Course List
-                    </a>
                 </div>
             </form>
         </div>

@@ -55,9 +55,9 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = Student::with('images')->paginate(10);
-        return view('students.index',compact('students'));
-    }
+        $students = Student::with(['results.course.teacher'])->paginate(10);
+        return view('students.index', compact('students'));
+    }    
     public function create()
     {
         return view('students.create'); // ✅ should now work

@@ -4,14 +4,14 @@
             <h2 class="text-2xl font-bold text-purple-700 mb-8 text-center">✏️ Edit Student</h2>
 
             @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    <strong>Whoops! Something went wrong.</strong>
-                    <ul class="mt-2 list-disc list-inside text-sm text-red-600">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <strong>Whoops! Something went wrong.</strong>
+                <ul class="mt-2 list-disc list-inside text-sm text-red-600">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
 
             <form action="{{ route('students.update', $student->id) }}" method="POST">
@@ -37,7 +37,7 @@
                             class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none" required>
                             <option value="" disabled>Select Section</option>
                             @foreach(['A', 'B', 'C', 'D'] as $sec)
-                                <option value="{{ $sec }}" {{ $student->section === $sec ? 'selected' : '' }}>{{ $sec }}</option>
+                            <option value="{{ $sec }}" {{ $student->section === $sec ? 'selected' : '' }}>{{ $sec }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -55,12 +55,13 @@
                     </div>
                 </div>
 
-                <div class="mt-8 flex justify-between">
-                    <a href="{{ route('students.index') }}" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-600 hover:text-white transition">
-                        ← Back
-                    </a>
+                <div class="mt-8 flex justify-between items-center">
+                    <div>
+                        <a href="{{ route('students.index') }}" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-600 hover:text-white transition">← Back                        </a>
+                        <a href="{{ route('results.index') }}" class="ml-3 ">🔙<span class="text-purple-600 font-semibold hover:underline">Go to Results</span></a>
+                    </div>
                     <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200">
-                        Update Student
+                    💾 Update Student
                     </button>
                 </div>
             </form>

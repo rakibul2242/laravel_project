@@ -32,11 +32,15 @@
                 </a>
             </div>
             @else
-
-            <h2 class="text-3xl font-bold text-center text-purple-800 mb-6">📚 All Courses</h2>
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-3xl font-bold text-center text-purple-800">📚 Course List</h2>
+                <a href="{{ route('courses.create') }}" class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">
+                    ➕ Add New Course
+                </a>
+            </div>
             <div class="overflow-x-auto bg-white rounded-lg shadow-md">
-            <table class="min-w-full text-sm text-left text-gray-700">
-            <thead class="bg-purple-600 text-white">
+                <table class="min-w-full text-sm text-left text-gray-700">
+                    <thead class="bg-purple-600 text-white">
                         <tr">
                             <th class="px-6 py-3 font-semibold">ID</th>
                             <th class="px-6 py-3 font-semibold">Course Name</th>
@@ -47,11 +51,11 @@
                             <th class="px-6 py-3 font-semibold">Department</th>
                             <th class="px-6 py-3 font-semibold">Teacher</th>
                             <th class="px-6 py-3 font-semibold">Actions</th>
-                        </tr>
+                            </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="divide-y divide-purple-200">
                         @forelse ($courses as $course)
-                        <tr class="border-t">
+                        <tr class="hover:bg-purple-50">
                             <td class="px-6 py-4">{{ $course->id }}</td>
                             <td class="px-6 py-4">{{ $course->title }}</td>
                             <td class="px-6 py-4">{{ $course->code }}</td>
@@ -63,7 +67,7 @@
                                 @if ($course->teacher)
                                 {{ $course->teacher->name }}
                                 @else
-                                No Teacher Assigned
+                                <span class="text-sm text-gray-500 italic">No Teacher Assigned</span>
                                 @endif
                             </td>
                             <td class="">
@@ -88,12 +92,6 @@
                 <div class="px-6 py-2 w-3/5 m-auto">
                     {{ $courses->links() }}
                 </div>
-            </div>
-            <div class="mt-6 flex justify-end items-center">
-                <a href="{{ route('courses.create') }}"
-                    class="px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition">
-                    ➕ Add New Course
-                </a>
             </div>
             @endif
         </div>

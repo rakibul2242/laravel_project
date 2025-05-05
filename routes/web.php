@@ -18,9 +18,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('students', StudentController::class);
+Route::get('/students/edit/{student}', [StudentController::class, 'edit'])->name('students.edit');
 Route::resource('teachers', TeacherController::class);
+Route::get('/teachers/edit/{teacher}', [TeacherController::class, 'edit'])->name('teachers.edit');
 Route::resource('courses', CourseController::class);
+Route::get('/courses/edit/{course}', [CourseController::class, 'edit'])->name('courses.edit');
 Route::resource('results', ResultController::class);
+Route::get('/results/edit/{result}', [ResultController::class, 'edit'])->name('results.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

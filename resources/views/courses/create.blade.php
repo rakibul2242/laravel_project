@@ -4,9 +4,19 @@
             <h2 class="text-2xl font-bold text-purple-700 mb-8 text-center">📚 Add New Course</h2>
 
             @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ session('success') }}
-                <a href="{{ route('courses.index') }}" class="text-blue-600 underline hover:text-blue-800 ml-2">View All Courses</a>
+            <div class="flex items-start bg-green-50 border-l-8 border-green-500 text-green-600 p-4 rounded-r-md shadow-xl mb-4" x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show" x-transition>
+                <div class="flex-1">
+                    <p class="text-lg flex font-semibold items-center">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="3"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>{{ session('success') }}
+                    </p>
+                    <a href="{{ route('courses.index') }}" class="inline-block font-medium mt-1 text-blue-600 hover:text-blue-800 underline">
+                        View All Courses
+                    </a>
+                </div>
             </div>
             @endif
 

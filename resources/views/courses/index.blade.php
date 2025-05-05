@@ -2,8 +2,16 @@
     <div class="py-10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ session('success') }}
+            <div class="flex items-start bg-green-50 border-l-8 border-green-500 text-green-600 p-4 rounded-r-md shadow-xl mb-4" x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show" x-transition>
+                <div class="flex-1">
+                    <p class="text-lg flex font-semibold items-center">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="3"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>{{ session('success') }}
+                    </p>
+                </div>
             </div>
             @endif
 
@@ -53,7 +61,7 @@
                             <th class="px-6 py-3 font-semibold">Actions</th>
                             </tr>
                     </thead>
-                    <tbody class="divide-y divide-purple-200">
+                    <tbody class="divide-y divide-purple-200 border-b border-purple-200">
                         @forelse ($courses as $index => $course)
                         <tr class="hover:bg-purple-50">
                             <td class="px-6 py-4">{{ $courses->firstItem() + $index }}</td>

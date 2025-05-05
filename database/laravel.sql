@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2025 at 05:06 PM
+-- Generation Time: May 05, 2025 at 03:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -230,7 +230,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `student_id`, `course_id`, `result`, `created_at`, `updated_at`) VALUES
-(21, 13, 5, 'B-', '2025-05-04 07:15:18', '2025-05-04 07:15:18'),
+(21, 13, 5, 'B+', '2025-05-04 07:15:18', '2025-05-05 07:02:26'),
 (22, 4, 9, 'C', '2025-05-04 07:23:57', '2025-05-04 07:23:57'),
 (23, 10, 7, 'B', '2025-05-04 07:31:25', '2025-05-04 07:31:25'),
 (24, 2, 9, 'B', '2025-05-04 07:38:50', '2025-05-04 07:38:50'),
@@ -248,7 +248,8 @@ INSERT INTO `results` (`id`, `student_id`, `course_id`, `result`, `created_at`, 
 (36, 1, 10, 'B-', '2025-05-04 08:28:04', '2025-05-04 08:28:04'),
 (37, 1, 11, 'C+', '2025-05-04 08:28:44', '2025-05-04 08:28:44'),
 (38, 1, 7, 'A', '2025-05-04 08:28:56', '2025-05-04 08:28:56'),
-(39, 1, 6, 'A-', '2025-05-04 08:29:28', '2025-05-04 08:29:28');
+(39, 1, 6, 'A-', '2025-05-04 08:29:28', '2025-05-04 08:29:28'),
+(40, 9, 8, 'B', '2025-05-05 06:16:56', '2025-05-05 06:16:56');
 
 -- --------------------------------------------------------
 
@@ -270,7 +271,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('i79FaJPoAXC45PS6QnqaAjG72nvYNQ8KxPWmoRM5', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMnlaeVFLN2hZN0xWd2N3eFVoTzNWUXRzeGhZRmlNbXlXZ2V4Nmc0NCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1746371178);
+('oRXRyzwAAp649g3QvGclzxyIgDqTX5dEE9mBQ9rv', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNnNCOXV2RHhISGR6N0YwSVZlZmZNWTJhZjhMbXY4QVJoMDJRbUpDWiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1746450633);
 
 -- --------------------------------------------------------
 
@@ -335,7 +336,7 @@ CREATE TABLE `teachers` (
 INSERT INTO `teachers` (`id`, `name`, `email`, `phone`, `department`, `created_at`, `updated_at`) VALUES
 (2, 'Amina Rahman', 'amina.rahman@example.com', 1710000001, 'Mathematics', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
 (3, 'Farhan Karim', 'farhan.karim@example.com', 1710000002, 'Physics', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
-(4, 'Nasreen Jahan', 'nasreen.jahan@example.com', 1710000003, 'Chemistry', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
+(4, 'Nasreen Jahan', 'nasreen.jahan@example.com', 1710000003, 'Chemistry', '2025-05-03 11:38:27', '2025-05-05 07:10:06'),
 (5, 'Sajjad Hossain', 'sajjad.hossain@example.com', 1710000004, 'Biology', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
 (6, 'Lamia Chowdhury', 'lamia.chowdhury@example.com', 1710000005, 'English', '2025-05-03 11:38:27', '2025-05-03 11:38:27'),
 (22, 'Zakia Sultana', 'zakia.sultana@example.com', 1710000016, 'Physics', '2025-05-03 11:40:20', '2025-05-03 06:13:23'),
@@ -594,7 +595,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `students`

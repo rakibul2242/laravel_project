@@ -101,7 +101,7 @@
             </div>
 
             <!-- Login Link -->
-            <div class="flex items-center justify-center text-sm text-gray-600 hover:text-gray-900 mt-0">
+            <div class="flex items-center justify-center text-sm text-gray-600 mt-0">
                 {{ __('Are you already registered?') }} &nbsp;
                 <a class="underline font-medium text-blue-600 hover:text-indigo-900" href="{{ route('login') }}">
                     {{ __('Login here') }}
